@@ -1,13 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using RestSharp;
 using System.Net;
 using System.Text;
 using TVShowClassLibrary;
+using TvShowWebAPI.Authentication;
 using TvShowWebAPI.Helpers;
 
 namespace TvShowWebAPI.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class IMDBController : ControllerBase

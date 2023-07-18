@@ -8,7 +8,7 @@ import { useState } from "react";
 
 export function EpisodeCard({ episode, token }: { episode: Episode, token: any }) {
 
-    const [watched, setWatched] = useState(false);
+    const [watched, setWatched] = useState(episode.isWatched);
 
     const markWatched = async (episode: Episode) => {
         console.log(episode);

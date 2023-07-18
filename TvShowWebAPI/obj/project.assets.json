@@ -4645,35 +4645,33 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Dean Braun\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files (x86)\\Progress\\ToolboxNuGetPackages": {}
+    "C:\\Users\\Dean\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Dean Braun\\source\\repos\\TvShowWebAPI\\TvShowWebAPI\\TvShowWebAPI.csproj",
+      "projectUniqueName": "C:\\Users\\Dean\\Downloads\\ddd\\gamesglobal\\TvShowWebAPI\\TvShowWebAPI.csproj",
       "projectName": "TvShowWebAPI",
-      "projectPath": "C:\\Users\\Dean Braun\\source\\repos\\TvShowWebAPI\\TvShowWebAPI\\TvShowWebAPI.csproj",
-      "packagesPath": "C:\\Users\\Dean Braun\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Dean Braun\\source\\repos\\TvShowWebAPI\\TvShowWebAPI\\obj\\",
+      "projectPath": "C:\\Users\\Dean\\Downloads\\ddd\\gamesglobal\\TvShowWebAPI\\TvShowWebAPI.csproj",
+      "packagesPath": "C:\\Users\\Dean\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Dean\\Downloads\\ddd\\gamesglobal\\TvShowWebAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files (x86)\\Progress\\ToolboxNuGetPackages"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Dean Braun\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Dean\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Telerik UI for WPF.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\sdk\\7.0.302\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
+        "C:\\Program Files\\dotnet\\sdk\\7.0.306\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -4760,7 +4758,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
       }
     }
   }

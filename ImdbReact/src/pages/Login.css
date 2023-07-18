@@ -1,0 +1,34 @@
+.loginDiv{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 300px;
+    row-gap: 15px;
+    margin-top: 50px;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+input{
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #fff;
+    transition: border-color 0.25s;
+    outline: none;
+    max-width: 150px;
+}
+
+label{
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.hoverBtn{
+    cursor: pointer;
+}

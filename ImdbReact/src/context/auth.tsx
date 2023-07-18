@@ -6,7 +6,7 @@ export function useAuth() {
 }
 
 interface AuthContextType {
-    user: any;
+    user: string;
     signin: (user: string, callback: VoidFunction) => void;
     signout: (callback: VoidFunction) => void;
 }
@@ -15,7 +15,7 @@ const AuthContext = React.createContext<AuthContextType>(null!);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const [user, setUser] = React.useState<any>(null);
+    const [user, setUser] = React.useState<any>(localStorage.getItem('token'));
 
     const signin = (newUser: string, callback: VoidFunction) => {
         return fakeAuthProvider.signin(() => {

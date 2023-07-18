@@ -18,6 +18,14 @@ export function LoginPage() {
     const navigate = useNavigate();
     const location = useLocation();
     const auth = useAuth();
+
+    if(auth.user){
+        const token = localStorage.getItem('token');
+
+        if(token){
+            navigate("/protected", { replace: true });
+        }
+    }
     //const {mutate} = usePosts();
     const mutation = useMutation({
         mutationFn: (loginModel: LoginModel) => {

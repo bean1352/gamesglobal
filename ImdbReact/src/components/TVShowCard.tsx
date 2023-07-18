@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Link, useParams } from "react-router-dom";
-import { TVShow } from "../pages/Protected";
 import "./TVShowCard.css";
+import { TVShow } from "../interfaces/TVShowInterfaces";
 
 export function TVShowCard(props: { tvShow: TVShow }) {
     const { tvShow } = props;
@@ -13,7 +13,7 @@ export function TVShowCard(props: { tvShow: TVShow }) {
 
     return (
         <Link className="card" to={`/tvshow/${tvShow.id}`}>
-            <img src={imgSrc} alt={tvShow.name} />
+            <img className="posterImage" src={imgSrc} alt={tvShow.name} />
             <div className="container">
                 <h4><b>{tvShow.name}</b></h4>
                 <p>{tvShow.overview}</p>

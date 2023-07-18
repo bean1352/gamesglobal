@@ -9,29 +9,8 @@ import { toast } from "react-toastify";
 import { ColorRing } from "react-loader-spinner";
 import { TVShowCard } from "../components/TVShowCard";
 import "./Protected.css" 
+import { TVShow } from "../interfaces/TVShowInterfaces";
 
-export interface TVShow {
-    backdrop_path: string;
-    first_air_date: string;
-    genre_ids: (number | null)[];
-    id: number | null;
-    name: string;
-    origin_country: string[];
-    original_language: string;
-    original_name: string;
-    overview: string;
-    popularity: number | null;
-    posterPath: string;
-    vote_average: number | null;
-    vote_count: number | null;
-}
-
-export interface PopularTVShows {
-    page: number | null;
-    results: TVShow[];
-    total_pages: number | null;
-    total_results: number | null;
-}
 
 type response = {
     data: {
@@ -74,7 +53,7 @@ export function ProtectedPage() {
 
     return (
         <div>
-            <h3>Welcome {auth.user}!</h3>
+            {/* <h3>Welcome {auth.user}!</h3> */}
             {query.isLoading ? 
             <ColorRing
             visible={true}
@@ -98,3 +77,4 @@ export function ProtectedPage() {
 
     );
 }
+

@@ -12,7 +12,7 @@ IConfiguration Configuration = new ConfigurationBuilder()
     .Build();
 
 // Add services to the container.
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddNewtonsoftJson();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -22,7 +22,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlSer
 // For Identity  
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()  
     .AddEntityFrameworkStores<ApplicationDbContext>()  
-    .AddDefaultTokenProviders();  
+    .AddDefaultTokenProviders();
 
 // Adding Authentication  
 builder.Services.AddAuthentication(options =>  
@@ -34,11 +34,14 @@ builder.Services.AddAuthentication(options =>
 
 // Adding Jwt Bearer  
 .AddJwtBearer(options =>  
-{  
+{
+    options.TokenValidationParameters.RoleClaimType = "roles";
+    options.TokenValidationParameters.NameClaimType = "name";
     options.SaveToken = true;  
     options.RequireHttpsMetadata = false;  
     options.TokenValidationParameters = new TokenValidationParameters()  
-    {  
+    { 
+        ValidateIssuerSigningKey = true,
         ValidateIssuer = false,  
         ValidateAudience = false,  
         ValidAudience = Configuration["JWT:ValidAudience"],  

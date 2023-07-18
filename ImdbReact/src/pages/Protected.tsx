@@ -14,7 +14,7 @@ import { TVShow } from "../interfaces/TVShowInterfaces";
 
 type response = {
     data: {
-        tvShows: TVShow[];
+        results: TVShow[];
     }
 }
 
@@ -41,6 +41,12 @@ export function ProtectedPage() {
         toast(query.error?.message);
     }
 
+    if(!query.isLoading || query.isSuccess) {
+        console.log(query.data);
+    }
+
+    
+
     // if(query.isSuccess) {
 
     //     // query.data?.data?.tvShows.forEach((tvShow: TVShow) => {
@@ -65,8 +71,8 @@ export function ProtectedPage() {
                 <div>
                     <h3>Popular TV Shows</h3>
                     <ul className="cardContainer">
-                        {query.data?.data?.tvShows.map((tvShow: TVShow) => {
-                            return <TVShowCard tvShow={tvShow}/>
+                        {query.data?.data?.results.map((results: TVShow) => {
+                            return <TVShowCard tvShow={results}/>
                         })}
                     </ul>
                 </div>

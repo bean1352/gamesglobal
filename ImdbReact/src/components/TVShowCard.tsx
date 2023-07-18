@@ -7,7 +7,7 @@ import { TVShow } from "../interfaces/TVShowInterfaces";
 export function TVShowCard(props: { tvShow: TVShow }) {
     const { tvShow } = props;
     const imageBaseUrl: string = import.meta.env.VITE_IMAGE_BASEURL;
-    const imgSrc = tvShow.posterPath ? `${imageBaseUrl}${tvShow.posterPath}` : "https://via.placeholder.com/500x750";
+    const imgSrc = tvShow.poster_path ? `${imageBaseUrl}${tvShow.poster_path}` : "https://via.placeholder.com/500x750";
 
     return (
         <Link className="card" to={`/tvshow/${tvShow.id}`}>

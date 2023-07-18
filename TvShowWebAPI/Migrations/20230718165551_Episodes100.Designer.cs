@@ -12,8 +12,8 @@ using TvShowWebAPI.Authentication;
 namespace TvShowWebAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230718140710_Episodes7")]
-    partial class Episodes7
+    [Migration("20230718165551_Episodes100")]
+    partial class Episodes100
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -43,14 +43,6 @@ namespace TvShowWebAPI.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -96,63 +88,6 @@ namespace TvShowWebAPI.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-                });
-
-            modelBuilder.Entity("Episode", b =>
-                {
-                    b.Property<int?>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("id"));
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("air_date")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("episode_number")
-                        .HasColumnType("int");
-
-                    b.Property<string>("name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("overview")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("production_code")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("runtime")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("season_number")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("show_id")
-                        .HasColumnType("int");
-
-                    b.Property<string>("still_path")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double?>("vote_average")
-                        .HasColumnType("float");
-
-                    b.Property<int?>("vote_count")
-                        .HasColumnType("int");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Episode");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -296,9 +231,6 @@ namespace TvShowWebAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("id"));
 
-                    b.Property<int?>("Episodeid")
-                        .HasColumnType("int");
-
                     b.Property<bool?>("adult")
                         .HasColumnType("bit");
 
@@ -338,39 +270,22 @@ namespace TvShowWebAPI.Migrations
 
                     b.HasKey("id");
 
-                    b.HasIndex("Episodeid");
-
                     b.ToTable("Crew");
                 });
 
-            modelBuilder.Entity("TvShowWebAPI.Episode", b =>
+            modelBuilder.Entity("TvShowWebAPI.EpisodesWatched", b =>
                 {
-                    b.Property<int?>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.Property<string>("id")
+                        .HasColumnType("nvarchar(450)");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("id"));
-
-                    b.Property<string>("air_date")
+                    b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("episode_id")
+                        .HasColumnType("int");
 
                     b.Property<int?>("episode_number")
-                        .HasColumnType("int");
-
-                    b.Property<string>("name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("overview")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("production_code")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("runtime")
                         .HasColumnType("int");
 
                     b.Property<int?>("season_number")
@@ -379,19 +294,9 @@ namespace TvShowWebAPI.Migrations
                     b.Property<int?>("show_id")
                         .HasColumnType("int");
 
-                    b.Property<string>("still_path")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double?>("vote_average")
-                        .HasColumnType("float");
-
-                    b.Property<int?>("vote_count")
-                        .HasColumnType("int");
-
                     b.HasKey("id");
 
-                    b.ToTable("Episodes");
+                    b.ToTable("EpisodesWatched");
                 });
 
             modelBuilder.Entity("TvShowWebAPI.GuestStar", b =>
@@ -401,9 +306,6 @@ namespace TvShowWebAPI.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("id"));
-
-                    b.Property<int?>("Episodeid")
-                        .HasColumnType("int");
 
                     b.Property<bool?>("adult")
                         .HasColumnType("bit");
@@ -443,20 +345,7 @@ namespace TvShowWebAPI.Migrations
 
                     b.HasKey("id");
 
-                    b.HasIndex("Episodeid");
-
                     b.ToTable("GuestStars");
-                });
-
-            modelBuilder.Entity("Episode", b =>
-                {
-                    b.HasOne("ApplicationUser", "User")
-                        .WithMany("WatchedEpisodes")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -508,32 +397,6 @@ namespace TvShowWebAPI.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("TvShowWebAPI.Crew", b =>
-                {
-                    b.HasOne("TvShowWebAPI.Episode", null)
-                        .WithMany("crew")
-                        .HasForeignKey("Episodeid");
-                });
-
-            modelBuilder.Entity("TvShowWebAPI.GuestStar", b =>
-                {
-                    b.HasOne("TvShowWebAPI.Episode", null)
-                        .WithMany("guest_stars")
-                        .HasForeignKey("Episodeid");
-                });
-
-            modelBuilder.Entity("ApplicationUser", b =>
-                {
-                    b.Navigation("WatchedEpisodes");
-                });
-
-            modelBuilder.Entity("TvShowWebAPI.Episode", b =>
-                {
-                    b.Navigation("crew");
-
-                    b.Navigation("guest_stars");
                 });
 #pragma warning restore 612, 618
         }

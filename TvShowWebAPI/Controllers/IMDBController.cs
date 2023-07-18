@@ -1,15 +1,18 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Azure;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using RestSharp;
 using System.Net;
+using System.Security.Claims;
 using System.Text;
 using TvShowWebAPI.Authentication;
 using TvShowWebAPI.Helpers;
 
 namespace TvShowWebAPI.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class IMDBController : ControllerBase
@@ -101,6 +104,23 @@ namespace TvShowWebAPI.Controllers
 
             TVShowSeasonDetail tvShowSeason = JsonConvert.DeserializeObject<TVShowSeasonDetail?>(response?.Content);
 
+            var username = User.Claims.Where(x => x.Type == ClaimTypes.Name).FirstOrDefault().Value;
+
+            var episodesWatched = _context.EpisodesWatched.Where(x =>  x.season_number == seasonNumber && username == x.username && tvShowID == x.show_id).ToList();
+
+            if (episodesWatched.Count > 0)
+            {
+                foreach(Episode episode in tvShowSeason.episodes)
+                {
+                    var episodeWatched = episodesWatched.Where(x => x.episode_id == episode.id).FirstOrDefault();
+
+                    if (episodeWatched != null)
+                    {
+                        episode.isWatched = true;
+                    }
+                }
+            }
+
             return Ok(tvShowSeason);
         }
         [HttpPost("MarkEpisodeAsWatched")]
@@ -110,16 +130,53 @@ namespace TvShowWebAPI.Controllers
             {
                 Console.WriteLine(episode);
 
-                _context.Episodes.Add(episode);
+                var username = User.Claims.Where(x => x.Type == ClaimTypes.Name).FirstOrDefault().Value;
+
+                _context.EpisodesWatched.Add(new EpisodesWatched
+                {
+                    id = Guid.NewGuid().ToString(),
+                    episode_id = episode.id,
+                    episode_number = episode.episode_number,
+                    season_number = episode.season_number,
+                    show_id = episode.show_id,
+                    UserId = "",
+                    username = username
+                });
 
                 await _context.SaveChangesAsync();
+
+                return Ok(episode);
             }
             catch (Exception ex)
             {
-
+                return BadRequest(ex.Message);
             }
+        }
+        [HttpPost("MarkEpisodeAsUnWatched")]
+        public async Task<IActionResult> PostMarkEpisodeAsUnWatched([FromBody] Episode episode)
+        {
+            try
+            {
+                Console.WriteLine(episode);
 
-            return Ok(episode);
+                var username = User.Claims.Where(x => x.Type == ClaimTypes.Name).FirstOrDefault().Value;
+
+                //remove where username = username and episode_id = episode.id
+                var listToRemove = _context.EpisodesWatched.Where(x => x.episode_id == episode.id && x.username == username).ToList();
+
+                foreach (var item in listToRemove)
+                {
+                    _context.EpisodesWatched.Remove(item);
+                }
+
+                await _context.SaveChangesAsync();
+
+                return Ok(episode);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

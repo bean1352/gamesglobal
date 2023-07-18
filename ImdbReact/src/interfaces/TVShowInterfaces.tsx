@@ -9,7 +9,7 @@ export interface TVShow {
     original_name: string;
     overview: string;
     popularity: number | null;
-    posterPath: string;
+    poster_path: string;
     vote_average: number | null;
     vote_count: number | null;
 }
@@ -149,6 +149,7 @@ export interface Episode {
     vote_count: number | null;
     crew: Crew[];
     guest_stars: GuestStar[];
+    isWatched: boolean;
 }
 
 export interface GuestStar {

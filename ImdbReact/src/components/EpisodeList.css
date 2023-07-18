@@ -32,3 +32,27 @@
     height: 50px;
     padding: 5px;
 }
+
+.watchedButton{
+    background: #f44336 !important;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.notWatchedButton{
+    background: #4CAF50 !important;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+button{
+    width: 110px;
+}

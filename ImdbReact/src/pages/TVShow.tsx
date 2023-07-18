@@ -35,7 +35,7 @@ export function TVShow() {
     }
 
     return (
-        <div>
+        <div className="pageContainer">
             {isLoading ?
                 <ColorRing
                     visible={true}

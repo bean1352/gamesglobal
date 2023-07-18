@@ -40,6 +40,10 @@
     width: 75px !important;
 }
 
+.pageContainer{
+    width: 90vw;
+}
+
 
 h3, h2, h4{
     color: gray;

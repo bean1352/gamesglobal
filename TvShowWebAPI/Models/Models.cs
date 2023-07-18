@@ -6,6 +6,16 @@ using Microsoft.AspNetCore.Identity;
 
 namespace TvShowWebAPI
 {
+    public class EpisodesWatched
+    {
+        public string id { get; set; }
+        public string UserId { get; set; }
+        public int? episode_id { get; set; }
+        public int? episode_number { get; set; }
+        public int? season_number { get; set; }
+        public int? show_id { get; set; }
+        public string? username { get; set; }
+    }
     public class TVShow
     {
         [JsonProperty("backdrop_path")]
@@ -341,51 +351,53 @@ namespace TvShowWebAPI
         public string profile_path { get; set; }
     }
 
-    public class Episode
-    {
+    //public class Episode
+    //{
+    //    [JsonProperty("user")]
+    //    public ApplicationUser User { get; set; }
 
-       [JsonProperty("air_date")]
-       public string air_date { get; set; }
+    //    [JsonProperty("air_date")]
+    //   public string air_date { get; set; }
 
-       [JsonProperty("episode_number")]
-       public int? episode_number { get; set; }
+    //   [JsonProperty("episode_number")]
+    //   public int? episode_number { get; set; }
 
-       [JsonProperty("id")]
-       public int? id { get; set; }
+    //   [JsonProperty("id")]
+    //   public int? id { get; set; }
 
-       [JsonProperty("name")]
-       public string name { get; set; }
+    //   [JsonProperty("name")]
+    //   public string name { get; set; }
 
-       [JsonProperty("overview")]
-       public string overview { get; set; }
+    //   [JsonProperty("overview")]
+    //   public string overview { get; set; }
 
-       [JsonProperty("production_code")]
-       public string production_code { get; set; }
+    //   [JsonProperty("production_code")]
+    //   public string production_code { get; set; }
 
-       [JsonProperty("runtime")]
-       public int? runtime { get; set; }
+    //   [JsonProperty("runtime")]
+    //   public int? runtime { get; set; }
 
-       [JsonProperty("season_number")]
-       public int? season_number { get; set; }
+    //   [JsonProperty("season_number")]
+    //   public int? season_number { get; set; }
 
-       [JsonProperty("show_id")]
-       public int? show_id { get; set; }
+    //   [JsonProperty("show_id")]
+    //   public int? show_id { get; set; }
 
-       [JsonProperty("still_path")]
-       public string still_path { get; set; }
+    //   [JsonProperty("still_path")]
+    //   public string still_path { get; set; }
 
-       [JsonProperty("vote_average")]
-       public double? vote_average { get; set; }
+    //   [JsonProperty("vote_average")]
+    //   public double? vote_average { get; set; }
 
-       [JsonProperty("vote_count")]
-       public int? vote_count { get; set; }
+    //   [JsonProperty("vote_count")]
+    //   public int? vote_count { get; set; }
 
-       [JsonProperty("crew")]
-       public List<Crew> crew { get; set; }
+    //   //[JsonProperty("crew")]
+    //   //public List<Crew> crew { get; set; }
 
-       [JsonProperty("guest_stars")]
-       public List<GuestStar> guest_stars { get; set; }
-    }
+    //   //JsonProperty("guest_stars")]
+    //   //public List<GuestStar> guest_stars { get; set; }
+    //}
 
     public class GuestStar
     {
@@ -455,9 +467,7 @@ namespace TvShowWebAPI
 }
 public class ApplicationUser : Microsoft.AspNetCore.Identity.IdentityUser
 {
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
-    public ICollection<Episode> WatchedEpisodes { get; set; }
+    //public ICollection<Episode?>? WatchedEpisodes { get; set; }
 }
 public class RegisterModel  
 {  
@@ -488,8 +498,8 @@ public class Response
 
 public class Episode
 {
-    public ApplicationUser User { get; set; }
-
+    //public ApplicationUser User { get; set; }
+    public bool? isWatched { get; set; } = false;
     [JsonProperty("air_date")]
     public string air_date { get; set; }
 

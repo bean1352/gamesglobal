@@ -1,17 +1,17 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace TvShowWebAPI.Authentication
 {
-    public class ApplicationUser : IdentityUser
-    {
-
-    }
-
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public string DbPath { get; }
+        public DbSet<Episode> Episodes { get; set; }
+        public DbSet<Crew> Crew { get; set; }
+        public DbSet<GuestStar> GuestStars { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
@@ -27,6 +27,14 @@ namespace TvShowWebAPI.Authentication
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            // builder.Entity<ApplicationUser>()
+            // .HasMany(e => e.WatchedEpisodes)
+            // .HasForeignKey(e => e.episodeId)
+            // .IsRequired();
+            builder.Entity<ApplicationUser>()
+            .HasMany(e => e.WatchedEpisodes)
+            .WithOne(e => e.User);
+
             base.OnModelCreating(builder);
         }
     }

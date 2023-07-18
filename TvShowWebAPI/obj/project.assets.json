@@ -1558,19 +1558,6 @@
             "rid": "win"
           }
         }
-      },
-      "TVShowClassLibrary/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v7.0",
-        "dependencies": {
-          "Newtonsoft.Json": "13.0.3"
-        },
-        "compile": {
-          "bin/placeholder/TVShowClassLibrary.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/TVShowClassLibrary.dll": {}
-        }
       }
     }
   },
@@ -4530,11 +4517,6 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
-    },
-    "TVShowClassLibrary/1.0.0": {
-      "type": "project",
-      "path": "../TVShowClassLibrary/TVShowClassLibrary.csproj",
-      "msbuildProject": "../TVShowClassLibrary/TVShowClassLibrary.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -4546,9 +4528,9 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.9",
       "Microsoft.EntityFrameworkCore.Sqlite >= 7.0.9",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.9",
+      "Newtonsoft.Json >= 13.0.3",
       "RestSharp >= 110.2.0",
-      "Swashbuckle.AspNetCore >= 6.5.0",
-      "TVShowClassLibrary >= 1.0.0"
+      "Swashbuckle.AspNetCore >= 6.5.0"
     ]
   },
   "packageFolders": {
@@ -4586,11 +4568,7 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {
-            "C:\\Users\\Dean Braun\\source\\repos\\TvShowWebAPI\\TVShowClassLibrary\\TVShowClassLibrary.csproj": {
-              "projectPath": "C:\\Users\\Dean Braun\\source\\repos\\TvShowWebAPI\\TVShowClassLibrary\\TVShowClassLibrary.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
@@ -4634,6 +4612,10 @@
             "suppressParent": "All",
             "target": "Package",
             "version": "[7.0.9, )"
+          },
+          "Newtonsoft.Json": {
+            "target": "Package",
+            "version": "[13.0.3, )"
           },
           "RestSharp": {
             "target": "Package",

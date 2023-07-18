@@ -4,7 +4,6 @@ using Newtonsoft.Json;
 using RestSharp;
 using System.Net;
 using System.Text;
-using TVShowClassLibrary;
 using TvShowWebAPI.Authentication;
 using TvShowWebAPI.Helpers;
 
@@ -19,7 +18,8 @@ namespace TvShowWebAPI.Controllers
         private string apiKey;
         private string imageBaseUrl;
         RestClient client;
-        public IMDBController()
+        ApplicationDbContext _context;
+        public IMDBController(ApplicationDbContext context)
         {
             IConfiguration configuration = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json", true, true)
@@ -35,6 +35,7 @@ namespace TvShowWebAPI.Controllers
             };
 
             client = new RestClient(options);
+            _context = context;
         }
 
         [HttpGet("GetTopRatedTVShows")]
@@ -83,8 +84,6 @@ namespace TvShowWebAPI.Controllers
                 return BadRequest(response.ErrorMessage);
             }
 
-            Console.WriteLine(response.Content);
-
             TVShowDetail tvShow = JsonConvert.DeserializeObject<TVShowDetail?>(response?.Content);
 
             return Ok(tvShow);
@@ -100,11 +99,27 @@ namespace TvShowWebAPI.Controllers
                 return BadRequest(response.ErrorMessage);
             }
 
-            Console.WriteLine(response.Content);
-
             TVShowSeasonDetail tvShowSeason = JsonConvert.DeserializeObject<TVShowSeasonDetail?>(response?.Content);
 
             return Ok(tvShowSeason);
+        }
+        [HttpPost("MarkEpisodeAsWatched")]
+        public async Task<IActionResult> PostMarkEpisodeAsWatched([FromBody] Episode episode)
+        {
+            try
+            {
+                Console.WriteLine(episode);
+
+                _context.Episodes.Add(episode);
+
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return Ok(episode);
         }
     }
 }

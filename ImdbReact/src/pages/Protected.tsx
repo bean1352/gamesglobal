@@ -37,19 +37,17 @@ export function ProtectedPage() {
 
 
     if(query.isError) {
-        console.log(query.error);
+        // console.log(query.error);
         toast(query.error?.message);
     }
 
-    if(query.isSuccess) {
-        console.log('Success');
-        console.log(query.data);
+    // if(query.isSuccess) {
 
-        query.data?.data?.tvShows.forEach((tvShow: TVShow) => {
-            console.log(tvShow.name);
-        });
+    //     // query.data?.data?.tvShows.forEach((tvShow: TVShow) => {
+    //     //     console.log(tvShow.name);
+    //     // });
     
-    }
+    // }
 
     return (
         <div>

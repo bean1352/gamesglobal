@@ -9,8 +9,6 @@ export function TVShowCard(props: { tvShow: TVShow }) {
     const imageBaseUrl: string = import.meta.env.VITE_IMAGE_BASEURL;
     const imgSrc = tvShow.posterPath ? `${imageBaseUrl}${tvShow.posterPath}` : "https://via.placeholder.com/500x750";
 
-    console.log(tvShow);
-
     return (
         <Link className="card" to={`/tvshow/${tvShow.id}`}>
             <img className="posterImage" src={imgSrc} alt={tvShow.name} />

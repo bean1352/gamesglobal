@@ -55,7 +55,7 @@ export function TVShow() {
                             <h2>{season.name}</h2>
                                 {season.poster_path ? <img className="posterImage1" src={`${import.meta.env.VITE_IMAGE_BASEURL}${season.poster_path}`} alt={season.name} />
                                         :
-                                        <img src="https://via.placeholder.com/150" alt={season.name} />
+                                        null
                                 }
                            </div>
 

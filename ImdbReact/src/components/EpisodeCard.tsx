@@ -28,7 +28,7 @@ export function EpisodeCard({ episode, token }: { episode: Episode, token: any }
         }
         else {
             setWatched(false);
-            toast("Error marking as Unseen");
+            toast("Error marked as Unseen");
         }
     };
 
@@ -51,7 +51,7 @@ export function EpisodeCard({ episode, token }: { episode: Episode, token: any }
         }
         else {
             setWatched(true);
-            toast("Error marking as Seen");
+            toast("Error marked as Seen");
         }
     };
 

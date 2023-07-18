@@ -32,6 +32,7 @@ builder.Services.AddAuthentication(options =>
     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;  
 })  
 
+
 // Adding Jwt Bearer  
 .AddJwtBearer(options =>  
 {
@@ -54,7 +55,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", builder =>
     {
-        builder.WithOrigins(new string [] {"http://127.0.0.1:5173"})
+        builder.WithOrigins(new string [] {"http://localhost:5173"})
                .AllowAnyMethod()
                .AllowAnyHeader()
                .AllowCredentials();
@@ -63,6 +64,10 @@ builder.Services.AddCors(options =>
 
 
 var app = builder.Build();
+
+using var scope = app.Services.CreateScope();
+var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+await context.Database.MigrateAsync();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
